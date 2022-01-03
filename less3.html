@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        //1
+        for (let i=0; i <= 10; i++){
+            if (i==0){
+                console.log(i, " - это ноль.")
+            }
+            else if (i%2==0){
+                console.log(i, " - четное число!")
+            } else {
+                console.log(i, " - нечетное число!")
+            }
+        }
+
+        //2
+        const post = {
+            author: "John", //вывести этот текст
+            postId: 23,
+            comments: [
+                {
+                    userId: 10,
+                    userName: "Alex",
+                    text: "lorem ipsum",
+                    rating: {
+                        likes: 10,
+                        dislikes: 2 //вывести это число
+                        }
+                },
+                {
+                    userId: 5, //вывести это число
+                    userName: "Jane",
+                    text: "lorem ipsum 2", //вывести этот текст
+                    rating: {
+                        likes: 3,
+                        dislikes: 1
+                        }
+                },
+            ]
+        };
+
+        console.log(post.author)
+        console.log(post.comments[0].rating.dislikes)
+        console.log(post.comments[1].userId)
+        console.log(post.comments[1].text)
+
+        //3
+        const products = [
+            {
+                id: 3,
+                price: 200,
+            },
+            {
+                id: 4,
+                price: 900,
+            },
+            {
+                id: 1,
+                price: 1000,
+            },
+        ];
+        
+        for (let i = 0; i < products.length; i++){
+            products[i].price = products[i].price - (products[i].price*15)/100;
+            console.log(products[i].price) 
+        }
+
+        console.log(products[2].price)//со скидкой
+
+        //4 - вывести те свойства где есть фото
+        const produucts = [
+            {
+                id: 3,
+                price: 127,
+                photos: [
+                    "1.jpg",
+                    "2.jpg",
+                ]
+            },
+            {
+                id: 5,
+                price: 499,
+                photos: []
+            },
+            {
+                id: 10,
+                price: 26,
+                photos: [
+                    "3.jpg" 
+                ]
+            },
+            {
+                id: 8,
+                price: 78,
+            },
+        ];
+        for (let i=0; i < produucts.length; i++){
+            if (("photos" in produucts[i]) && produucts[i].photos.length != 0) {
+                console.log(produucts[i])
+            }
+        }
+        //with filter:
+        const arrProd = produucts.filter(function(aa){
+            return ("photos" in aa && aa.photos != 0);
+        })
+        console.log(arrProd)
+        produucts.sort(function(a,b){
+            return b.id - a.id
+        })
+        console.log(produucts)
+
+        //6
+        for (let i=1; i <= 21; i++){
+            console.log('*'.repeat(i))
+        }
+    </script>
+</body>
+</html>
