@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1.1
+
+        //es5 создаем конструктор Product
+        /*function Product(name, price){
+            this.name = name;
+            this.price = price;
+        }
+        //создаем метод который будет в объектах типа Product     
+        Product.prototype.makediscount = function(){
+            let newPrice = this.price - (this.price*25)/100; //формула из прошлого дз, уменьшает текущую цену на 25 процентов
+            console.log(newPrice)
+        }
+
+        var product1 = new Product('T1', 350);
+        product1.makediscount()
+        console.log(product1)*/
+
+
+        //ES6
+        class Product {
+            constructor(name, price){
+                this.name = name;
+                this.price = price;
+            }
+            discount(){
+                let newPrice = this.price - (this.price*25)/100; //формула из прошлого дз, уменьшает текущую цену на 25 процентов
+                console.log(newPrice)
+            }
+        }
+        var product1 = new Product('T1', 444)
+        product1.discount()
+        console.log(product1)
+
+        //1.2
+
+        function Post(autor, text, date){
+            this.autor = autor;
+            this.text = text;
+            this.date = date;
+          /*  this.edit = function(newtext){
+                this.text = newtext;
+            }*/ //дублируется при наследовании в других конструкторах или создании объектов данного типа
+            
+        }
+        //поэтому в целях экономии памяти создаем метод отдельно чтобы он был в прототипе
+        Post.prototype.edit = function(newtext){
+            this.text = newtext;
+        }
+        var newT = new Post('As', 'Less', '131221') 
+        newT.edit('NewText21')
+        console.log(newT)
+
+        function AttachedPost(autor, text, date, highlighted){
+            Post.call(this, autor, text, date);
+            this.highlighted = highlighted;
+        }
+        AttachedPost.prototype = Object.create(Post.prototype) // наследуем методы у конструктора Post
+        AttachedPost.prototype.constructor = AttachedPost // возвращаем исходный конструктор
+
+        //создаем метод который будет менять свойство highlighted на true
+        AttachedPost.prototype.makeTextHighlighted = function(){
+            this.highlighted = true;
+        }
+
+        //создаем объект
+
+        var newObj = new AttachedPost('AsyaKaz', 'Less4', '050122', false)
+        newObj.edit('TextInTheNewObject')
+        newObj.makeTextHighlighted()
+        console.log(newObj)
+
+    </script>
+</body>
+</html>
