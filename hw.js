@@ -6,7 +6,7 @@ function tf(){
 
     alert(Tf);
 }
-
+//forcheck
 function second(){
     let admin;
     let name="Василий";
